@@ -3,6 +3,7 @@
 *.egg-info
 .coverage
 
+build
 _build
 _static
 dist

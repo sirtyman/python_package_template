@@ -7,8 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
+          name: Install tests dependencies
           command: 'sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall'
+      - run:
+          name: Install dev dependencies
+          command: 'sudo pip install -r ./requirements.txt --upgrade --force-reinstall'
       - run:
           name: Pylint for dev code
           command: 'pylint ./python_package_template/'

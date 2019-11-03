@@ -6,7 +6,6 @@ jobs:
       - image: circleci/python:3.6.2
     steps:
       - checkout
-      - run: mkdir venv
       - run:
           name: Install dependencies
           command: 'sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall'
@@ -21,7 +20,7 @@ jobs:
           command: 'python setup.py docs'
       run:
           name: Run pytest
-
+          command: 'pytest tests/'
 
 workflows:
   version: 2

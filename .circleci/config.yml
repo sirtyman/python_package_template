@@ -7,10 +7,18 @@ jobs:
     steps:
       - checkout
       - run: mkdir venv
-      - run: 'sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall'
       - run:
-          name: Pylint
+          name: Install dependencies
+          command: 'sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall'
+      - run:
+          name: Pylint for dev code
           command: 'pylint ./python_package_template/'
+      -run:
+          name: Pylint for test code
+          command: 'pylint tests'
+      - run:
+          name: Generate documentation
+          command: 'python setup.py docs'
 
 workflows:
   version: 2

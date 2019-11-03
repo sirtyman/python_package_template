@@ -1,4 +1,4 @@
-"""__init__"""
+"""__init__ file"""
 
 # -*- coding: utf-8 -*-
 from pkg_resources import get_distribution, DistributionNotFound

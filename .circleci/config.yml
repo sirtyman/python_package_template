@@ -12,13 +12,13 @@ jobs:
       - run:
           name: Pylint for dev code
           command: 'pylint ./python_package_template/'
-      -run:
+      - run:
           name: Pylint for test code
           command: 'pylint tests'
       - run:
           name: Generate documentation
           command: 'python setup.py docs'
-      run:
+      - run:
           name: Run pytest
           command: 'pytest tests/'
 

@@ -19,6 +19,9 @@ jobs:
       - run:
           name: Generate documentation
           command: 'python setup.py docs'
+      run:
+          name: Run pytest
+
 
 workflows:
   version: 2

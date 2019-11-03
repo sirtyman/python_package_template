@@ -1,9 +1,30 @@
 version: 2
 jobs:
-  build:
+  py38:
     working_directory: ~/python_package_template
     docker:
-      - image: circleci/python:3.6.2
+      - image: circleci/python:3.8.0
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: 'sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall'
+      - run:
+          name: Pylint for dev code
+          command: 'pylint ./python_package_template/'
+      - run:
+          name: Pylint for test code
+          command: 'pylint tests'
+      - run:
+          name: Generate documentation
+          command: 'python setup.py docs'
+      - run:
+          name: Run pytest
+          command: 'pytest tests/'
+  py27:
+    working_directory: ~/python_package_template
+    docker:
+      - image: circleci/python:2.7.14
     steps:
       - checkout
       - run:
@@ -26,4 +47,5 @@ workflows:
   version: 2
   build_test:
     jobs:
-      - build
+      - py27
+      - py38

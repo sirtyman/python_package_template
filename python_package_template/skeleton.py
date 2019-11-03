@@ -25,24 +25,24 @@ __author__ = "Marcin Tyman"
 __copyright__ = "Marcin Tyman"
 __license__ = "mit"
 
-_logger = logging.getLogger(__name__)
+_LOGGER = logging.getLogger(__name__)
 
 
-def fib(n):
+def fib(number):
     """Fibonacci example function
 
     Args:
-      n (int): integer
+      number (int): integer
 
     Returns:
       int: n-th Fibonacci number
     """
-    assert n > 0
-    a, b = 1, 1
-    for i in range(n - 1):
-        a, b = b, a + b
+    assert number > 0
+    num1, num2 = 1, 1
+    for _ in range(number - 1):
+        num1, num2 = num2, num1 + num2
 
-    return a
+    return num1
 
 
 def parse_args(args):
@@ -100,9 +100,9 @@ def main(args):
     """
     args = parse_args(args)
     setup_logging(args.loglevel)
-    _logger.debug("Starting crazy calculations...")
+    _LOGGER.debug("Starting crazy calculations...")
     print("The {}-th Fibonacci number is {}".format(args.n, fib(args.n)))
-    _logger.info("Script ends here")
+    _LOGGER.info("Script ends here")
 
 
 def run():

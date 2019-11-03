@@ -4,7 +4,7 @@ import os
 
 def test_import_modules():
     """Test packages and modules import."""
-    for root, _, files in os.walk('../python_package_template'):
+    for root, _, files in os.walk('python_package_template'):
         package_name = root.split('/')[-1]
 
         for file in files:

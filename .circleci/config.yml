@@ -23,4 +23,6 @@ workflows:
   setup_and_py36:
     jobs:
       - setup
-      - py36
+      - py36:
+          requires:
+            - setup

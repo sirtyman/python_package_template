@@ -1,30 +1,26 @@
 version: 2
 jobs:
-  linter:
+  setup:
+    working_directory: ~/python_package_template
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/python:3.6.2
     steps:
       - checkout
-      - run: echo "PyLint verification."
+      - run: mkdir venv
+      - run: sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall
+      - run: sleep 25
 
-  py27:
+  py36:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/python:3.6.2
     steps:
       - checkout
-      - run: echo "Python 2.7 workflow."
-
-  py38:
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
-      - checkout
-      - run: echo "Python 3.8 workflow"
+      - run: pylint ./python_package_template/
+      - run: sleep 5
 
 workflows:
   version: 2
-  pipeline:
+  setup_and_py36:
     jobs:
-      - linter
-      - py27
-      - py38
+      - setup
+      - py36

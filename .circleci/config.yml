@@ -8,10 +8,6 @@ jobs:
       - checkout
       - run: mkdir venv
       - run: 'sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall'
-
-  test:
-    steps:
-      - checkout
       - run:
           name: Pylint
           command: 'pylint ./python_package_template/'
@@ -21,6 +17,3 @@ workflows:
   build_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build

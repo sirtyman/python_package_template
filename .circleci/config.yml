@@ -1,8 +1,24 @@
 version: 2
 jobs:
-  build:
+  linter:
     docker:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "PyLint verification."
+
+  py27:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+      - run: echo "Python 2.7 workflow."
+
+  py38:
+    docker:
+      - image: circleci/ruby:2.4.1
+      steps:
+        - checkout
+        - run: echo "Python 3.8 workflow"
+
+

@@ -1,28 +1,31 @@
 version: 2
 jobs:
-  setup:
+  build:
     working_directory: ~/python_package_template
     docker:
       - image: circleci/python:3.6.2
     steps:
       - checkout
       - run: mkdir venv
-      - run: sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall
-      - run: sleep 25
+      - run: 'sudo pip install -r ./test-requirements.txt --upgrade --force-reinstall'
 
-  py36:
+  test:
     docker:
       - image: circleci/python:3.6.2
     steps:
       - checkout
-      - run: pylint ./python_package_template/
-      - run: sleep 5
+      - run:
+          name: Pylint
+          command: 'pylint ./python_package_template/'
 
 workflows:
   version: 2
-  setup_and_py36:
+  build_and_test:
     jobs:
-      - setup
-      - py36:
+      - build
+      - test:
           requires:
-            - setup
+            - build
+          filters:
+            branches:
+              only: master

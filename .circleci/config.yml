@@ -20,3 +20,11 @@ jobs:
     steps:
       - checkout
       - run: echo "Python 3.8 workflow"
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - linter
+      - py27
+      - py38
